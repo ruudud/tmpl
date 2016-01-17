@@ -1,0 +1,16 @@
+{
+  "name": "tmpl",
+  "version": "0.0.1",
+  "description": "Tiny template engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "template",
+    "templates",
+    "templating"
+  ],
+  "author": "Pål Ruud",
+  "license": "MIT"
+}
