@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>t.js</title>
+<title>tmple.js</title>
 <style>
 	body { background:black; color:white; padding:40px; font-family: 'PT Sans', Helvetica, Arial, sans-serif;}
 	a { color:#9bf; }
@@ -15,8 +15,8 @@
 <script src="http://code.jquery.com/qunit/qunit-1.9.0.js"></script>
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/qunit/qunit-1.9.0.css">
 
-<script src="t.min.js"></script>
-<script type="t/template" id="test">
+<script src="tmple.js"></script>
+<script type="tmple/template" id="test">
 
 	<h1>{{=greeting}}</h1>
 	<h2>{{=user.display_name}}</h2>
@@ -70,10 +70,10 @@
 
 	console.log(document.getElementById('test').innerHTML);
 
-	test("t.js tests", function() {
+	test("tmple.js tests", function() {
 
 		var div = document.createElement('div');
-		var template = new t(document.getElementById('test').innerHTML);
+		var template = new tmple(document.getElementById('test').innerHTML);
 		div.innerHTML = template.render({
 			greeting: "Welcome!",
 			user: {
@@ -98,7 +98,8 @@
 			}
 		});
 		document.body.appendChild(div);
-		console.log(div.innerHTML);
+
+        var $address = div.getElementsByTagName('address')[0];
 
 		ok(/<h1>Welcome!<\/h1>/.test(div.innerHTML), "Simple interpolation.");
 		ok(/<h2>Jason<\/h2>/.test(div.innerHTML), "Name-spaced interpolation.");
@@ -106,7 +107,7 @@
 		ok(/<p>Missing /.test(div.innerHTML), "If-not block.");
 		ok(/<p>Bacon ipsum Jason\?<\/p>/.test(div.innerHTML), "If-else block (true).");
 		ok(/<p>Yes bacon ipsum Jason\!<\/p>/.test(div.innerHTML), "If-else block (false).");
-		ok(/<address>111 State St, Ithaca,&lt;script&gt;alert\(1\);&lt;\/script&gt; NY 14853<\/address>/.test(div.innerHTML), "Scrubbed interpolation.");
+		ok(/111 State St, Ithaca,&lt;script&gt;alert\(1\);&lt;\/script&gt; NY 14853/.test($address.textContent), "Scrubbed interpolation.");
 		equal(div.innerHTML.match(/>(?:Kunal|Francisco|Nick)</g).length, 3, "Array iteration.")
 		equal(div.innerHTML.match(/>(?:Notifications|Yes!|Stay logged in|No)</g).length, 4, "Object key/val iteration.")
 
@@ -117,7 +118,7 @@
 		equal(document.getElementById("false").innerHTML, "", "Does not print boolean false");
 		equal(document.getElementById("null").innerHTML, "", "Does not print null");
 
-		equal((new t("{{%quot}}")).render({quot: '"'}), "&quot;", "Escapes quotes properly")
+		equal((new tmple("{{%quot}}")).render({quot: '"'}), "&quot;", "Escapes quotes properly")
 
 	});
 

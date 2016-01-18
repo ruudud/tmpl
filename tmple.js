@@ -76,11 +76,21 @@ function render(fragment, vars) {
     });
 }
 
-function tmple(template) {
+function Tmple(template) {
   this.t = template;
 }
-tmple.prototype.render = function (vars) {
+Tmple.prototype.render = function (vars) {
   return render(this.t, vars);
 };
 
-module.exports = tmple;
+
+if (typeof define === 'function' && define.amd) {
+  define([], function() {
+    return Tmple;
+  });
+} else if (typeof module === 'object' && module.exports) {
+  module.exports = Tmple;
+} else {
+  window.tmple = window.tmple || Tmple;
+}
+

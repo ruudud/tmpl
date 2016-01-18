@@ -3,6 +3,14 @@ Fork of [jasonmoo/t.js](https://github.com/jasonmoo/t.js) with CommonJS support
 and improved HTML sanitation based on [OWASP][] recommendations. 
 
 
+## Idea
+Focus on making it easy to do simple (yet common!) tasks like if-checks and
+simple loops, but making it hard to do a lot of logic inside template.
+
+In addition, the size of the library itself should be as tiny as possible for
+use in browsers.
+
+
 ## Features
  * Simple interpolation: `{{=value}}`
  * Scrubbed interpolation: `{{%unsafe_value}}`
@@ -16,19 +24,17 @@ and improved HTML sanitation based on [OWASP][] recommendations.
 
 
 ## Using
+This module supports CommonJS (Node and Browserify with
+[tmple transform](https://github.com/ruudud/tmpleify)), AMD (RequireJS) and
+VanillaJS.
 
 ```
 var template = new tmple("<div>Hello {{%name}}</div>");
 document.body.innerHtml = template.render({name: "World!"});
 ```
 
-For more advanced usage, check the
+For more advanced usage, check 
 [`tmple_test.html`](https://github.com/ruudud/tmple/blob/master/tmple_test.html).
-
-
-## Browserify transform
-Checkout [ruudud/tmpleify](https://github.com/ruudud/tmpleify) for a simple
-transform to use with Browserify.
 
 
 ## License
