@@ -1,4 +1,4 @@
-# tmpl
+# tmple
 Fork of [jasonmoo/t.js](https://github.com/jasonmoo/t.js) with CommonJS support
 and improved HTML sanitation based on [OWASP][] recommendations. 
 
@@ -18,16 +18,16 @@ and improved HTML sanitation based on [OWASP][] recommendations.
 ## Using
 
 ```
-var template = new tmpl("<div>Hello {{%name}}</div>");
+var template = new tmple("<div>Hello {{%name}}</div>");
 document.body.innerHtml = template.render({name: "World!"});
 ```
 
 For more advanced usage, check the
-[`tmpl_test.html`](https://github.com/ruudud/tmpl/blob/master/tmpl_test.html).
+[`tmple_test.html`](https://github.com/ruudud/tmple/blob/master/tmple_test.html).
 
 
 ## Browserify transform
-Checkout [ruudud/tmplify](https://github.com/ruudud/tmplify) for a simple
+Checkout [ruudud/tmpleify](https://github.com/ruudud/tmpleify) for a simple
 transform to use with Browserify.
 
 

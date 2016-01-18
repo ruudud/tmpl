@@ -76,11 +76,11 @@ function render(fragment, vars) {
     });
 }
 
-function tmpl(template) {
+function tmple(template) {
   this.t = template;
 }
-tmpl.prototype.render = function (vars) {
+tmple.prototype.render = function (vars) {
   return render(this.t, vars);
 };
 
-module.exports = tmpl;
+module.exports = tmple;
