@@ -15,7 +15,7 @@ function scrub(val) {
 function get_value(vars, key) {
   var parts = key.split('.');
   while (parts.length) {
-    if (!(parts[0] in vars)) {
+    if (!vars || !(parts[0] in vars)) {
       return false;
     }
     vars = vars[parts.shift()];
@@ -27,7 +27,9 @@ function render(fragment, vars) {
   return fragment
     .replace(blockregex, function(_, __, meta, key, inner, if_true, has_else, if_false) {
 
-      var val = get_value(vars,key), temp = "", i;
+      var val  = get_value(vars, key),
+          temp = "",
+          i;
 
       if (!val) {
 
@@ -67,7 +69,7 @@ function render(fragment, vars) {
 
     })
     .replace(valregex, function(_, meta, key) {
-      var val = get_value(vars,key);
+      var val = get_value(vars, key);
 
       if (val || val === 0) {
         return meta == '%' ? scrub(val) : val;
