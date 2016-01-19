@@ -15,7 +15,7 @@ function scrub(val) {
 function get_value(vars, key) {
   var parts = key.split('.');
   while (parts.length) {
-    if (!vars || !(parts[0] in vars)) {
+    if (!vars.hasOwnProperty(parts[0])) {
       return false;
     }
     vars = vars[parts.shift()];
