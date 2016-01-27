@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/qunit/qunit-1.9.0.css">
 
 <script src="tmple.js"></script>
+
 <script type="tmple/template" id="test">
 
 	<h1>{{=greeting}}</h1>
@@ -68,7 +69,7 @@
 </script>
 <script>
 
-	console.log(document.getElementById('test').innerHTML);
+	//console.log(document.getElementById('test').innerHTML);
 
 	test("tmple.js tests", function() {
 
@@ -118,7 +119,9 @@
 		equal(document.getElementById("false").innerHTML, "", "Does not print boolean false");
 		equal(document.getElementById("null").innerHTML, "", "Does not print null");
 
-		equal((new tmple("{{%quot}}")).render({quot: '"'}), "&quot;", "Escapes quotes properly")
+		equal((new tmple("{{%quot}}")).render({quot: '"'}), "&quot;", "Escapes quotes properly");
+		equal((new tmple("{{foo}} {{%foo.bar}} {{/foo}}{{@user.prefs}}<p><span>{{=_key}}</span>{{=_val}}</p>{{/@user.prefs}}")).render(void 0), "", "Handles empty context without failing");
+
 
 	});
 
